@@ -1,15 +1,32 @@
-name: dispatch receiver
+name: Unit Test Project
 
 on:
-  repository_dispatch:
-    types:
-      - manual-trigger-automation-test
+  push:
+    branches:
+      - "main"
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1
-      - name: dispatch trigger
-        run: |
-          echo "repository_dispatch triggered"
+      - name: Print Branch Name
+        run: echo "Branch name ${GITHUB_REF_NAME}"
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build
+        working-directory: ConsoleAppProject
+        run: dotnet build --no-restore
+
+      - name: Test        
+        run: dotnet test --no-restore --no-build --verbosity normal
