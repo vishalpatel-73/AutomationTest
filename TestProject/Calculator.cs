@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnitTestProject
+namespace TestProject
 {
     internal class Calculator
     {
