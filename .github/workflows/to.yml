@@ -1,20 +1,27 @@
-name: Unit Test Project
+name: Automation Tests
 
 on:
-  push:
-    branches:
-      - "main"
+  workflow_call:
 
 jobs:
-  build:
+  Tests:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print Branch Name
+      - name: Print branch name
         run: echo "Branch name ${GITHUB_REF_NAME}"
 
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Setup Build Version
+        run: |
+          echo "${{ github.run_number }}"
+          echo "${{ secrets.GH_PAT }}"
+
+      - name: Checkout AutomationTest Repository
+        uses: actions/checkout@v4
+        with:
+          repository: vishalpatel-73/AutomationTest
+          token: ${{ secrets.GH_PAT }}
+          path: master
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -28,5 +35,5 @@ jobs:
         working-directory: TestProject
         run: dotnet build --no-restore
 
-      - name: Test        
+      - name: Test
         run: dotnet test --no-restore --no-build --verbosity normal
