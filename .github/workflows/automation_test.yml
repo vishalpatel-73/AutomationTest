@@ -1,0 +1,12 @@
+name: Automation Tests
+
+on:
+  workflow_call:
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print branch name
+        run: echo "Hello from Automation Tests"
