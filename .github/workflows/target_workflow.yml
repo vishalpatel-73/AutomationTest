@@ -1,7 +1,8 @@
 name: Automation Tests
 
 on:
-  workflow_call:
+  repository_dispatch:
+    types: [trigger-workflow]
 
 jobs:
   Tests:
@@ -9,4 +10,4 @@ jobs:
 
     steps:
       - name: Print branch name
-        run: echo "Hello from Automation Tests"
+        run: echo "Hello from Target Workflow"
