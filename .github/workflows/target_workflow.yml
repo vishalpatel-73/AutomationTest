@@ -13,4 +13,6 @@ jobs:
         run: echo "Hello from Target Workflow"
 
       - name: Print branch name
-        run: echo "Environment Value=${{ github.event.client_payload.environment }}" >> $GITHUB_ENV
+        run: |
+          echo "Environment Value=${{ github.event.client_payload.environment }}" >> $GITHUB_ENV
+          echo "Event Value= ${{ github.event_name }}" >> @GITHUB_ENV
