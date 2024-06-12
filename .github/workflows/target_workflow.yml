@@ -13,4 +13,4 @@ jobs:
         run: echo "Hello from Target Workflow"
 
       - name: Print branch name
-        run: echo "Value=${{ github.event.client_payload.unit }}" >> $GITHUB_ENV
+        run: echo "Environment Value=${{ github.event.client_payload.environment }}" >> $GITHUB_ENV
