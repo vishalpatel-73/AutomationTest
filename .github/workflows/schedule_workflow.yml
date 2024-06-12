@@ -1,0 +1,14 @@
+name: Daily Test Branch Workflow
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "* * * * *"
+  
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Branch Name
+        run: echo "Event Value=${{ github.event_name }}" >> @GITHUB_ENV
