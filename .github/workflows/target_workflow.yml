@@ -11,3 +11,6 @@ jobs:
     steps:
       - name: Print branch name
         run: echo "Hello from Target Workflow"
+
+      - name: Print branch name
+        run: echo "Value: " ${{ github.event.client_payload.sha }}
