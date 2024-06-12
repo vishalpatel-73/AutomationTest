@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print branch name
+      - name: Print Branch Name
         run: echo "Hello from Target Workflow"
 
-      - name: Print branch name
+      - name: Print Environment Name
         run: |
           echo "Environment Value=${{ github.event.client_payload.environment }}" >> $GITHUB_ENV
-          echo "Event Value= ${{ github.event_name }}" >> @GITHUB_ENV
+          echo "Event Value=${{ github.event_name }}" >> @GITHUB_ENV
